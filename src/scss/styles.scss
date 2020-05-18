@@ -177,12 +177,14 @@ body {
     }
 
     .sidebar {
-        display: flex;
-        flex-direction: column;
         padding: 1.6rem 1.6rem 2.1rem 1.6rem;
         max-height: 100%;
         overflow: hidden;
         background-color: #f3f3f3;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 2.2rem 4.2rem 3.5rem auto 6.1rem;
+        align-items: start;
 
         .sidebar-header {
             border-bottom: 2px solid #dddddf;
@@ -195,113 +197,94 @@ body {
             }
         }
 
-        .sidebar-section {
-            background-color: lighten(green, 15%);
+        .content-section-summary {
             display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            // max-height: 100%;
+            flex-direction: row;
+            justify-content: space-between;;
+            margin-top: 1.5rem;
+            font-size: 0.88rem;
+            height: 2.5rem;
+            padding-bottom: 1.6rem;
+            border-bottom: 2px solid #dddddf;
 
-            .content-section-summary {
+            .label {
+                align-self: flex-start;
+            }
+
+            .summary {
+                align-self: flex-start;
+                font-size: 1rem;
+                font-weight: bold;
+            }
+        }
+
+        .sidebar-section-header {
+            height: 44px;
+            margin-top: 8px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-self: flex-start;
+            font-size: 0.8rem;
+            color: #bfbec6;
+        }
+
+        .content-section-discounts {
+            display: grid;
+            border-bottom: 2px solid #dddddf;
+            max-height: 100%;
+            overflow-y: auto;
+        
+
+            .discount-row {
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;;
-                margin-top: 1.5rem;
-                font-size: 0.88rem;
-                height: 2.5rem;
-                padding-bottom: 1.6rem;
-                border-bottom: 2px solid #dddddf;
+                justify-content: space-between;
+                font-size: 0.8rem;
+                margin-bottom: 1.1rem;
+                padding-right: 0.1rem;
 
-                .label {
-                    align-self: flex-start;
+                .amount {
+                    font-weight: bold;
                 }
+            }
+        }
 
-                .summary {
-                    align-self: flex-start;
-                    font-size: 1rem;
+        .content-section-checkout {
+            display: flex;
+            flex-direction: column;
+            height: 6.1rem;
+            align-self: stretch;
+            margin-top: auto;
+            justify-content: space-between;
+            padding-top: 0.8rem;
+
+            .checkout-total {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                font-size: 0.9rem;
+
+                .amount {
                     font-weight: bold;
                 }
             }
 
-            .sidebar-section-header {
-                height: 44px;
-                margin-top: 8px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                align-self: flex-start;
-                font-size: 0.8rem;
-                color: #bfbec6;
-            }
+            .checkout-button {
+                align-self: stretch;
 
-            .discount-wrapper {
-                display: grid;
-                // overflow-y: auto;
-                grid-template-columns: 1fr;
-                grid-template-rows: 6.1rem auto;
-                align-items: start;
-                height: 100%;
-                // max-height: 100%;
-
-                .content-section-discounts {
-                    display: grid;
-                    border-bottom: 2px solid #dddddf;
-                    height: 100%;
-                    max-height: 100%;
-                    overflow-y: scroll;
-                    
-                    max-height: 100%;
-
-                    .discount-row {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: space-between;
-                        font-size: 0.8rem;
-                        margin-bottom: 1.1rem;
-
-                        .amount {
-                            font-weight: bold;
-                        }
-                    }
-                }
-
-                .content-section-checkout {
-                    display: flex;
-                    flex-direction: column;
-                    height: 6.1rem;
-                    align-self: stretch;
-                    margin-top: auto;
-                    justify-content: space-between;
-                    padding-top: 0.8rem;
-
-                    .checkout-total {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: space-between;
-                        font-size: 0.9rem;
-
-                        .amount {
-                            font-weight: bold;
-                        }
-                    }
-
-                    .checkout-button {
-                        align-self: stretch;
-
-                        button {
-                            width: 100%;
-                            padding: 0.8rem;
-                            background-color: #6F64F8;
-                            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.135216);
-                            border: 0;
-                            border-radius: 5px;
-                            text-align: center;
-                            color: #fff;
-                            font-size: 0.85rem;
-                            font-weight: bold;
-                            cursor: pointer;
-                        }
-                    }
+                button {
+                    width: 100%;
+                    padding: 0.8rem;
+                    background-color: #6F64F8;
+                    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.135216);
+                    border: 0;
+                    border-radius: 5px;
+                    text-align: center;
+                    color: #fff;
+                    font-size: 0.85rem;
+                    font-weight: bold;
+                    cursor: pointer;
                 }
             }
         }
