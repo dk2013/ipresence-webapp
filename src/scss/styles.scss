@@ -183,7 +183,7 @@ body {
         background-color: #f3f3f3;
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 2.2rem 4.2rem 3.5rem auto 6.1rem;
+        grid-template-rows: 2.2rem 5.8rem 2.2rem auto 6rem;
         align-items: start;
 
         .sidebar-header {
@@ -219,8 +219,6 @@ body {
         }
 
         .sidebar-section-header {
-            height: 44px;
-            margin-top: 8px;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -253,9 +251,7 @@ body {
         .content-section-checkout {
             display: flex;
             flex-direction: column;
-            height: 6.1rem;
             align-self: stretch;
-            margin-top: auto;
             justify-content: space-between;
             padding-top: 0.8rem;
 
@@ -267,6 +263,7 @@ body {
 
                 .amount {
                     font-weight: bold;
+                    font-size: 1.2rem;
                 }
             }
 
@@ -295,14 +292,14 @@ body {
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
     html {
-        font-size: 14px;
+        font-size: 12px;
     }  
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
     html {
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 
