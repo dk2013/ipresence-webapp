@@ -1,0 +1,225 @@
+@import "normalize";
+@import "fonts";
+
+html {
+    box-sizing: border-box;
+    font-size: 12px;
+}
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Main styles */
+
+$bg-color: white;
+
+html, body
+{
+    height: 100%;
+}
+
+body {
+    background-color: $bg-color;
+    font-family: Myriad Pro Regular;
+}
+
+.grid-container {
+    background-color: blue;
+    display: grid;
+    grid-template-columns: 71fr 29fr;
+    max-width: 100%;
+    height: 100%;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        padding: 1.6rem 1.6rem 2.1rem 3rem; //padding: 26px 26px 34px 48px;
+        background-color: #fff; 
+        max-height: 100%;
+        overflow: hidden;
+
+        .content-header {
+            border-bottom: 2px solid #edeef0;
+            
+            h3 {
+                font-size: 1rem;
+                font-weight: bold;
+                margin-top: 0;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .content-section-wrapper {
+            margin-top: 1.6rem;
+            overflow-y: auto;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 2.4rem auto;
+            align-items: start;
+
+            .content-section-header {
+                position: sticky;
+                top: 0;
+                background-color: white;
+                z-index: 100;
+                display: grid;
+                grid-template-columns: 45fr 20fr 20fr 15fr;
+                grid-template-rows: 0.8rem;
+                padding-bottom: 1.6rem;
+                
+                .item {
+                    color: #bfbec6;
+                    font-size: 0.7rem;
+                    text-align: center;
+                    position: sticky;
+                    top: 0;
+                    z-index: 100;
+                    background-color: white;
+                }
+    
+                .left {
+                    text-align: left;
+                }
+            }
+
+            .content-section {
+                display: grid;
+                grid-template-columns: 45fr 20fr 20fr 15fr;
+                grid-auto-rows: 64px;
+                grid-row-gap: 26px;
+                z-index: 10;
+
+                .item {
+                    display: flex;
+                    justify-content: center;
+                    z-index: 10;
+
+                    .item-card {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+
+                        .item-card-img {
+                            display: flex;
+                            width: 64px;
+                            height: 64px;
+                            max-width: 64px;
+
+                            img {
+                                object-fit: contain;
+                                border: 2px solid #edeef0;
+                                border-radius: 3px;
+                                height: 64px;
+                                width: 64px;
+                            }
+                            
+                            :hover {
+                                cursor: pointer;
+                            }
+                        }
+
+                        .item-card-content {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            padding-left: 1rem;
+
+                            h3 {
+                                color: #6F64F8;
+                                font-size: 0.85rem;
+                                font-weight: bold;
+                                margin-top: 0;
+                                margin-bottom: 0.2rem;
+                            }
+                            > div {
+                                color: #bfbec6;
+                                font-size: 0.64rem;
+                            }
+                        }
+
+                        .item-card-quantity {
+                            display: flex;
+
+                            a {
+                                text-decoration: none;
+                                color: #6F64F8;
+                                align-self: center;
+                                padding: 0.6rem;
+                                font-weight: bold;
+                            }
+
+                            input {
+                                width: 2.2rem;
+                                height: 2.2rem;
+                                border: 2px solid #edeef0;
+                                border-radius: 3px;
+                                text-align: center;
+                                font-size: 0.9rem;
+                                color: #030303;
+                                align-self: center;
+                                appearance: none;
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                            }
+                        }
+
+                        .item-card-price, .item-card-total {
+                            align-self: center;
+                        }
+                    }
+                }
+
+                .left {
+                    justify-content: flex-start;
+                }
+            }
+        }
+    }
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        padding: 1.6rem 1.6rem 2.1rem 1.6rem;
+        height: 100%;
+
+        .sidebar-header {
+            background-color: rgb(90, 128, 0);
+            height: 100px;
+        }
+
+        .sidebar-section {
+            background-color: lighten(green, 15%);
+            flex-grow: 1;
+        }
+    }
+}
+
+/* Media queries */
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+    html {
+        font-size: 14px;
+    }  
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    html {
+        font-size: 16px;
+    }
+}
+    
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+    html {
+        font-size: 18px;
+    }
+}
