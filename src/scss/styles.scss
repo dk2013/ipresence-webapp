@@ -3,7 +3,7 @@
 
 html {
     box-sizing: border-box;
-    font-size: 12px;
+    font-size: 14px;
 }
   *, *:before, *:after {
     box-sizing: inherit;
@@ -25,14 +25,14 @@ body {
 
 .grid-container {
     display: grid;
-    grid-template-columns: 71fr 29fr;
+    grid-template-columns: 1fr;
     max-width: 100%;
-    height: 100%;
+    // height: 100%;
 
     .content {
         display: flex;
         flex-direction: column;
-        padding: 1.6rem 1.6rem 2.1rem 3rem; //padding: 26px 26px 34px 48px;
+        padding: 1.6rem 1.6rem 2.1rem 1.6rem;
         background-color: #fff;
         max-height: 100%;
         overflow: hidden;
@@ -295,6 +295,23 @@ body {
 }
 
 /* Media queries */
+// Put sidebar down for small screens or portrait mode
+@media (min-width: 506px) {
+    html {
+        font-size: 12px;
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: 71fr 29fr;
+        max-width: 100%;
+        height: 100%;
+
+        .content {
+            padding-left: 3rem; //padding: 26px 26px 34px 48px;
+        }
+    }
+}
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
     html {

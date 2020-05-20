@@ -17,28 +17,45 @@
 
 class Storage {
     constructor() {
-        this.readDataFromStorage();
+        this.data = null;
+        this.readProductsDataFromStorage();
+        this.discountsData = null;
+        this.readDiscountsDataFromStorage();
     }
 
-    readDataFromStorage() {
-        // $.ajax({
-        //     url : "json/storage.json",
-        //     async : false
-        // })
-        // .done((data) => {       
-        //     this.data = data;
-        // })
-        // .fail(() => { 
-        //     throw new Error('Error reading storage'); 
-        // })
-
-
-        // I used loading JSON in js variable because ajax can't 
-        // load local file by CORS reason
-        this.data = storageJSON;
+    readProductsDataFromStorage() {
+        $.ajax({
+            url : "json/storage.json",
+            async : false
+        })
+        .done((data) => {       
+            this.data = data;
+        })
+        .fail(() => { 
+            throw new Error('Error reading storage'); 
+        });
     }
 
-    getData() {
+    readDiscountsDataFromStorage() {
+        this.discountsData = [
+            {
+                productCode : 'GOKU',
+                name : '2x1 GOKU POP',
+                discount : null
+            },
+            {
+                productCode : 'NARU',
+                name : 'x3 NARUTO POP',
+                discount : 1
+            }
+        ];
+    }
+
+    getProductsData() {
         return this.data;
     };
+
+    getDiscountsData() {
+        return this.discountsData;
+    }
 }   

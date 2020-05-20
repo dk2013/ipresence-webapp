@@ -1,7 +1,8 @@
 class Product {
-    constructor($el, data) {
+    constructor($el, data, helper) {
         this.$el = $el;
         this.data = data;
+        this.helper = helper;
         this.buttonClickHandler = this.buttonClickHandler.bind(this);
         this.inputQuantityChangeHandler = this.inputQuantityChangeHandler.bind(this);
 
@@ -42,7 +43,6 @@ class Product {
     }
 
     buttonClickHandler(e) {
-        // console.log($(e.target));
         let $button = $(e.target);
         if($button.hasClass('js-increase')) {
             this.increaseQuantity();
@@ -50,7 +50,6 @@ class Product {
             this.decreaseQuantity();
         }
         this.changeTotal();
-        // this.reRender();
     }
 
     inputQuantityChangeHandler(e) {
@@ -62,7 +61,6 @@ class Product {
         this.data.quantity = quantity;
         this.updateQuantity();
         this.changeTotal();
-        // this.reRender();
     }
 
     increaseQuantity() {
@@ -77,6 +75,9 @@ class Product {
 
     updateQuantity() {
         this.$el.find('.js-quantity-input').val(this.data.quantity);
+
+        // Update Order component
+        this.helper.updateOrder();
     }
 
     changeTotal() {
