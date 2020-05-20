@@ -1,0 +1,1 @@
+var storageJSON = [{"product":{"code":"GOKU","name":"Goku POP","price":5,"image":"goku_pop.jpg"},"quantity":0,"total":0},{"product":{"code":"NARU","name":"Naruto POP","price":20,"image":"naruto_pop.jpg"},"quantity":0,"total":0},{"product":{"code":"LUF","name":"Luffy POP","price":7.5,"image":"luffy_pop.jpg"},"quantity":0,"total":0}];

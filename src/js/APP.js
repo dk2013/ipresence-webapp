@@ -1,28 +1,18 @@
 class APP {
     constructor($el) {
         this.$el = $el;
+        // TODO: emitter
+        this.storage = new Storage();
     }
 
     render() {
+        let $container = this.$el.find('.js-product');
+        let data = this.storage.getData();
 
-        // get all products from db
-        // get from json -> new Product
-        // render header, footer, sidebar, content
-
-        let $productContainer = this.$el.find('.js-product');
-        // foreach
-            const data = {
-                product : {
-                    code : '111',
-                    name : 'name',
-                    price : 10,
-                    image : 'goku_pop.jpg'
-                },
-                quantity : 2,
-                total : 355
-            };
-            new Product($productContainer, data).render();
-            
-            // new Product($productContainer, productData).render();
+        data.forEach(item => {
+            let $itemsRow = $('<div class="items-row">');
+            new Product($itemsRow, item).render();
+            $container.append($itemsRow)
+        });
     }
 }

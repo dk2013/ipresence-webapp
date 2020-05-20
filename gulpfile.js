@@ -54,6 +54,11 @@ gulp.task('fonts', function() {
         .pipe(gulp.dest('dist/fonts'));
 });
 
+gulp.task('json', function() {
+    return gulp.src('src/json/**/*')
+        .pipe(gulp.dest('dist/json'));
+});
+
 gulp.task('serve', function() {
 
     browserSync.init({
@@ -72,6 +77,6 @@ gulp.task('clean', function(done) {
 });
 
 // Build Production Site
-gulp.task('build', gulp.series('clean', 'js', 'templates', 'img', 'sass', 'fonts', 'html'));
+gulp.task('build', gulp.series('clean', 'js', 'templates', 'img', 'sass', 'fonts', 'json', 'html'));
 
 gulp.task('default', gulp.series('js','serve'));

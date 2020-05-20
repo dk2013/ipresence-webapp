@@ -51,9 +51,9 @@ window["JST"]["product/quantity.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '';
 with (obj) {
-__p += '<div class="item">\r\n    <div class="item-card">\r\n        <div class="item-card-quantity">\r\n            <a href="#">-</a>\r\n            <input type="text" value="' +
+__p += '<div class="item">\r\n    <div class="item-card">\r\n        <div class="item-card-quantity">\r\n            <a class="js-item-quantity js-decrease" href="#">-</a>\r\n            <input type="text" class="js-quantity-input" value="' +
 ((__t = (quantity)) == null ? '' : __t) +
-'">\r\n            <a href="#">+</a>\r\n        </div>\r\n    </div>\r\n</div>';
+'">\r\n            <a class="js-item-quantity js-increase" href="#">+</a>\r\n        </div>\r\n    </div>\r\n</div>';
 
 }
 return __p
@@ -65,9 +65,9 @@ window["JST"]["product/total.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '';
 with (obj) {
-__p += '<div class="item">\r\n    <div class="item-card">\r\n        <div class="item-card-total">\r\n            ' +
+__p += '<div class="item">\r\n    <div class="item-card">\r\n        <div class="item-card-total">\r\n            <span class="js-total">' +
 ((__t = (total)) == null ? '' : __t) +
-' €\r\n        </div>\r\n    </div>\r\n</div>';
+'</span> €\r\n        </div>\r\n    </div>\r\n</div>';
 
 }
 return __p

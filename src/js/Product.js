@@ -2,6 +2,11 @@ class Product {
     constructor($el, data) {
         this.$el = $el;
         this.data = data;
+        this.buttonClickHandler = this.buttonClickHandler.bind(this);
+        this.inputQuantityChangeHandler = this.inputQuantityChangeHandler.bind(this);
+
+        this.$el.on('click', '.js-item-quantity', this.buttonClickHandler);
+        this.$el.on('change', '.js-quantity-input', this.inputQuantityChangeHandler);
     }
 
     getPrice() {
@@ -9,32 +14,73 @@ class Product {
     }
 
     render() {
-        // this.$el.append(this.getHTML());
-
-        this.$el.append(this.getProductDetails());
-        this.$el.append(this.getProductQuantity());
-        this.$el.append(this.getProductPrice());
-        this.$el.append(this.getProductTotal());
+        this.$el.append(this._getProductDetails());
+        this.$el.append(this._getProductQuantity());
+        this.$el.append(this._getProductPrice());
+        this.$el.append(this._getProductTotal());
     }
 
-    getProductDetails() {
+    reRender() {
+        this.$el.html('');
+        this.render();
+    }
+
+    _getProductDetails() {
         return JST["product/details.html"](this.data.product);
     }
 
-    getProductQuantity() {
+    _getProductQuantity() {
         return JST["product/quantity.html"](this.data);
     }
 
-    getProductPrice() {
+    _getProductPrice() {
         return JST["product/price.html"](this.data.product);
     }
 
-    getProductTotal() {
+    _getProductTotal() {
         return JST["product/total.html"](this.data);
     }
 
-    getHTML() {
-        // console.log(window["JST"]["product.html"](this.data));
-        return JST["product.html"](this.data);
+    buttonClickHandler(e) {
+        // console.log($(e.target));
+        let $button = $(e.target);
+        if($button.hasClass('js-increase')) {
+            this.increaseQuantity();
+        } else if(this.data.quantity > 0) {
+            this.decreaseQuantity();
+        }
+        this.changeTotal();
+        // this.reRender();
+    }
+
+    inputQuantityChangeHandler(e) {
+        let $input = $(e.target);
+        let quantity = Number($input.val());
+        if(quantity < 0 || isNaN(quantity)) {
+            quantity = 0;
+        }
+        this.data.quantity = quantity;
+        this.updateQuantity();
+        this.changeTotal();
+        // this.reRender();
+    }
+
+    increaseQuantity() {
+        this.data.quantity++;
+        this.updateQuantity();
+    }
+
+    decreaseQuantity() {
+        this.data.quantity--;
+        this.updateQuantity();    
+    }
+
+    updateQuantity() {
+        this.$el.find('.js-quantity-input').val(this.data.quantity);
+    }
+
+    changeTotal() {
+        this.data.total = this.data.quantity * this.data.product.price;
+        this.$el.find('.js-total').text(this.data.total);
     }
 }
