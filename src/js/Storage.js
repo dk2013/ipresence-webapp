@@ -1,4 +1,4 @@
-// Data structure example:
+// List of products data structure example:
 /*
 [
     {
@@ -23,6 +23,10 @@ class Storage {
         this.readDiscountsDataFromStorage();
     }
 
+    /**
+     * The function has to read list of products from local storage
+     * In demo case it reads data from json/storage.json local file
+     */
     readProductsDataFromStorage() {
         $.ajax({
             url : "json/storage.json",
@@ -36,6 +40,10 @@ class Storage {
         });
     }
 
+    /**
+     * The function has to read list of discounts from some db
+     * In demo case it reads data from hardcoded variable
+     */
     readDiscountsDataFromStorage() {
         this.discountsData = [
             {

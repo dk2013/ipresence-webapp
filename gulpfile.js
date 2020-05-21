@@ -31,8 +31,6 @@ gulp.task('templates', function (done) {
 
 gulp.task('js', function() {
     return gulp.src(['node_modules/jquery/dist/jquery.min.js'])
-        // .pipe(concat('libs.min.js'))
-        // .pipe(uglify())
         .pipe(gulp.dest('src/js'))
         .pipe(browserSync.stream());
 });

@@ -6,7 +6,9 @@ class Product {
         this.buttonClickHandler = this.buttonClickHandler.bind(this);
         this.inputQuantityChangeHandler = this.inputQuantityChangeHandler.bind(this);
 
+        // Button (-/+) click event listener
         this.$el.on('click', '.js-item-quantity', this.buttonClickHandler);
+        // Quantity input event listener
         this.$el.on('change', '.js-quantity-input', this.inputQuantityChangeHandler);
     }
 
@@ -34,29 +36,29 @@ class Product {
     }
 
     buttonClickHandler(e) {
-        let $button = $(e.target);
-        if($button.hasClass('js-increase')) {
+        let $button = $(e.target); // (-/+ button)
+        if($button.hasClass('js-increase')) { // (+)
             this.increaseQuantity();
-        } else if(this.data.quantity > 0) {
+        } else if(this.data.quantity > 0) { // (-) Musn't be negative or NaN
             this.decreaseQuantity();
         }
         this.changeTotal();
 
-        // Updates Order component
+        // Update Order component
         this.helper.updateOrder();
     }
 
     inputQuantityChangeHandler(e) {
         let $input = $(e.target);
         let quantity = Number($input.val());
-        if(quantity < 0 || isNaN(quantity)) {
+        if(quantity < 0 || isNaN(quantity)) {  // Musn't be negative or NaN
             quantity = 0;
         }
         this.data.quantity = quantity;
         this.updateQuantity();
         this.changeTotal();
 
-        // Updates Order component
+        // Update Order component
         this.helper.updateOrder();
     }
 

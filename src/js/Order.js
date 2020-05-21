@@ -110,7 +110,7 @@ class Order {
             }
         }
 
-        if(discountObj.amount > 0) {
+        if(discountObj.amount) {
             discountObj.amount = -discountObj.amount;
         } else {
             return false;

@@ -8,6 +8,8 @@ class APP {
     }
 
     render() {
+        // this.$el.prepend(this._getCartTemplate());
+
         let $productContainer = this.$el.find('.js-product');
         let productsData = this.storage.getProductsData();
         let helper = {
@@ -23,4 +25,8 @@ class APP {
     updateOrder() {
         this.order.update(this.storage);
     }
+
+    // _getCartTemplate() {
+    //     return JST["cart.html"]();
+    // }
 }

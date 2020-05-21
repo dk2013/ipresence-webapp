@@ -1,6 +1,10 @@
 @import "normalize";
 @import "fonts";
 
+$buttons-plus-minus-transform-factor: 1.5;
+$input-quantity-transform-factor: 1.12;
+$button-checkout-transform-factor: 1.08;
+
 html {
     box-sizing: border-box;
     font-size: 14px;
@@ -27,7 +31,6 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     max-width: 100%;
-    // height: 100%;
 
     .content {
         display: flex;
@@ -151,8 +154,16 @@ body {
                                     align-self: center;
                                     padding: 0.6rem;
                                     font-weight: bold;
-                                }
+                                    transition: transform 0.3s ease-out;
 
+                                    &:hover {
+                                        transform:scale($buttons-plus-minus-transform-factor, $buttons-plus-minus-transform-factor);
+                                        -webkit-transform:scale($buttons-plus-minus-transform-factor, $buttons-plus-minus-transform-factor);
+                                        -moz-transform:scale($buttons-plus-minus-transform-factor, $buttons-plus-minus-transform-factor);
+                                        transition: transform 0.3s ease-out;
+                                    }
+                                }
+  
                                 input {
                                     width: 2.2rem;
                                     height: 2.2rem;
@@ -165,6 +176,14 @@ body {
                                     appearance: none;
                                     -webkit-appearance: none;
                                     -moz-appearance: none;
+                                    transition: transform 0.3s ease-out;
+
+                                    &:hover {
+                                        transform:scale($input-quantity-transform-factor, $input-quantity-transform-factor);
+                                        -webkit-transform:scale($input-quantity-transform-factor, $input-quantity-transform-factor);
+                                        -moz-transform:scale($input-quantity-transform-factor, $input-quantity-transform-factor);
+                                        transition: transform 0.3s ease-out;
+                                    }
                                 }
                             }
 
@@ -289,6 +308,14 @@ body {
                     font-size: 0.85rem;
                     font-weight: bold;
                     cursor: pointer;
+                    transition: transform 0.3s ease-out;
+                }
+
+                :hover {
+                    transform:scale($button-checkout-transform-factor, $button-checkout-transform-factor);
+                    -webkit-transform:scale($button-checkout-transform-factor, $button-checkout-transform-factor);
+                    -moz-transform:scale($button-checkout-transform-factor, $button-checkout-transform-factor);
+                    transition: transform 0.3s ease-out;
                 }
             }
         }
