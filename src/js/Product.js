@@ -10,20 +10,11 @@ class Product {
         this.$el.on('change', '.js-quantity-input', this.inputQuantityChangeHandler);
     }
 
-    getPrice() {
-        console.log(this.price);
-    }
-
     render() {
         this.$el.append(this._getProductDetails());
         this.$el.append(this._getProductQuantity());
         this.$el.append(this._getProductPrice());
         this.$el.append(this._getProductTotal());
-    }
-
-    reRender() {
-        this.$el.html('');
-        this.render();
     }
 
     _getProductDetails() {
@@ -50,6 +41,9 @@ class Product {
             this.decreaseQuantity();
         }
         this.changeTotal();
+
+        // Updates Order component
+        this.helper.updateOrder();
     }
 
     inputQuantityChangeHandler(e) {
@@ -61,6 +55,9 @@ class Product {
         this.data.quantity = quantity;
         this.updateQuantity();
         this.changeTotal();
+
+        // Updates Order component
+        this.helper.updateOrder();
     }
 
     increaseQuantity() {
@@ -75,9 +72,6 @@ class Product {
 
     updateQuantity() {
         this.$el.find('.js-quantity-input').val(this.data.quantity);
-
-        // Update Order component
-        this.helper.updateOrder();
     }
 
     changeTotal() {

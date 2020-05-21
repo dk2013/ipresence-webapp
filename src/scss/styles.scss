@@ -231,6 +231,7 @@ body {
             align-self: flex-start;
             font-size: 0.8rem;
             color: #bfbec6;
+            visibility: hidden;
         }
 
         .content-section-discounts {
@@ -238,7 +239,7 @@ body {
             border-bottom: 2px solid #dddddf;
             max-height: 100%;
             overflow-y: auto;
-        
+            visibility: hidden;
 
             .discount-row {
                 display: flex;

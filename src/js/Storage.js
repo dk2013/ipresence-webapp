@@ -41,12 +41,12 @@ class Storage {
             {
                 productCode : 'GOKU',
                 name : '2x1 GOKU POP',
-                discount : null
+                amount : null
             },
             {
                 productCode : 'NARU',
                 name : 'x3 NARUTO POP',
-                discount : 1
+                amount : 1
             }
         ];
     }
@@ -58,4 +58,4 @@ class Storage {
     getDiscountsData() {
         return this.discountsData;
     }
-}   
+}
