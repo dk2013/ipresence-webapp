@@ -3,13 +3,13 @@ class Product {
         this.$el = $el;
         this.data = data;
         this.helper = helper;
-        this.buttonClickHandler = this.buttonClickHandler.bind(this);
-        this.inputQuantityChangeHandler = this.inputQuantityChangeHandler.bind(this);
+        this._buttonClickHandler = this._buttonClickHandler.bind(this);
+        this._inputQuantityChangeHandler = this._inputQuantityChangeHandler.bind(this);
 
         // Button (-/+) click event listener
-        this.$el.on('click', '.js-item-quantity', this.buttonClickHandler);
+        this.$el.on('click', '.js-item-quantity', this._buttonClickHandler);
         // Quantity input event listener
-        this.$el.on('change', '.js-quantity-input', this.inputQuantityChangeHandler);
+        this.$el.on('change', '.js-quantity-input', this._inputQuantityChangeHandler);
     }
 
     render() {
@@ -35,48 +35,48 @@ class Product {
         return JST["product/total.html"](this.data);
     }
 
-    buttonClickHandler(e) {
+    _buttonClickHandler(e) {
         let $button = $(e.target); // (-/+ button)
         if($button.hasClass('js-increase')) { // (+)
-            this.increaseQuantity();
+            this._increaseQuantity();
         } else if(this.data.quantity > 0) { // (-) Musn't be negative or NaN
-            this.decreaseQuantity();
+            this_decreaseQuantity();
         }
-        this.changeTotal();
+        this._changeTotal();
 
         // Update Order component
         this.helper.updateOrder();
     }
 
-    inputQuantityChangeHandler(e) {
+    _inputQuantityChangeHandler(e) {
         let $input = $(e.target);
         let quantity = Number($input.val());
         if(quantity < 0 || isNaN(quantity)) {  // Musn't be negative or NaN
             quantity = 0;
         }
         this.data.quantity = quantity;
-        this.updateQuantity();
-        this.changeTotal();
+        this._updateQuantity();
+        this._changeTotal();
 
         // Update Order component
         this.helper.updateOrder();
     }
 
-    increaseQuantity() {
+    _increaseQuantity() {
         this.data.quantity++;
-        this.updateQuantity();
+        this._updateQuantity();
     }
 
-    decreaseQuantity() {
+    _decreaseQuantity() {
         this.data.quantity--;
-        this.updateQuantity();    
+        this._updateQuantity();    
     }
 
-    updateQuantity() {
+    _updateQuantity() {
         this.$el.find('.js-quantity-input').val(this.data.quantity);
     }
 
-    changeTotal() {
+    _changeTotal() {
         this.data.total = this.data.quantity * this.data.product.price;
         this.$el.find('.js-total').text(this.data.total);
     }

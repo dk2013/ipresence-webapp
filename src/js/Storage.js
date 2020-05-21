@@ -18,16 +18,16 @@
 class Storage {
     constructor() {
         this.data = null;
-        this.readProductsDataFromStorage();
+        this._readProductsDataFromStorage();
         this.discountsData = null;
-        this.readDiscountsDataFromStorage();
+        this._readDiscountsDataFromStorage();
     }
 
     /**
      * The function has to read list of products from local storage
      * In demo case it reads data from json/storage.json local file
      */
-    readProductsDataFromStorage() {
+    _readProductsDataFromStorage() {
         $.ajax({
             url : "json/storage.json",
             async : false
@@ -44,7 +44,7 @@ class Storage {
      * The function has to read list of discounts from some db
      * In demo case it reads data from hardcoded variable
      */
-    readDiscountsDataFromStorage() {
+    _readDiscountsDataFromStorage() {
         this.discountsData = [
             {
                 productCode : 'GOKU',

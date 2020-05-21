@@ -1,33 +1,52 @@
 class Order {
-    constructor($el) {
+    constructor($el, storage) {
         this.$el = $el;
+        this.storage = storage;
     }
 
-    update(storage) {
+    render() {
+        this.$el.append(this._getOrderSummary());
+        this.$el.append(this._getOrderDiscounts());
+        this.$el.append(this._getOrderCheckout());
+    }
+
+    _getOrderSummary() {
+        return JST["order/summary.html"]();
+    }
+
+    _getOrderDiscounts() {
+        return JST["order/discounts.html"]();
+    }
+
+    _getOrderCheckout() {
+        return JST["order/checkout.html"]();
+    }
+
+    update() {
         let $itemsSum = this.$el.find('.js-sum-items');
         let $itemsSumAmount = this.$el.find('.js-sum-amount');
 
-        const itemsSum = this.calculateItemsSum(storage);
-        const itemsSumAmount = this.calculateItemsSumAmount(storage);
+        const itemsSum = this._calculateItemsSum();
+        const itemsSumAmount = this._calculateItemsSumAmount();
 
         // Set order summary values
         $itemsSum.text(itemsSum);
         $itemsSumAmount.text(itemsSumAmount);
 
         // Apply discounts
-        let discounts = this.getDiscounts(storage);
-        this.applyDiscounts(discounts);
+        let discounts = this._getDiscounts();
+        this._applyDiscounts(discounts);
 
         // Set Total cost
         let $totalCostContainer = this.$el.find('.js-total-cost');
-        let totalCostAmount = this.calculateTotalCost(itemsSumAmount, discounts);
+        let totalCostAmount = this._calculateTotalCost(itemsSumAmount, discounts);
         $totalCostContainer.text(totalCostAmount + ' €')
     }
 
-    calculateItemsSum(storage) {
+    _calculateItemsSum() {
         let itemsSum = 0;
-        if(Array.isArray(storage.data)) {
-            let itemsArray = storage.data;
+        if(Array.isArray(this.storage.data)) {
+            let itemsArray = this.storage.data;
             itemsArray.forEach(item => {
                 itemsSum += item.quantity;
             });
@@ -35,10 +54,10 @@ class Order {
         return itemsSum;
     }
 
-    calculateItemsSumAmount(storage) {
+    _calculateItemsSumAmount() {
         let itemsSumAmount = 0;
-        if(Array.isArray(storage.data)) {
-            let itemsArray = storage.data;
+        if(Array.isArray(this.storage.data)) {
+            let itemsArray = this.storage.data;
             itemsArray.forEach(item => {
                 itemsSumAmount += item.total;
             });
@@ -46,7 +65,7 @@ class Order {
         return itemsSumAmount;
     }
 
-    applyDiscounts(discounts) {
+    _applyDiscounts(discounts) {
         // Toggle discounts blocks
         let $discountsHeader = this.$el.find('.js-discounts-header');
         let $discountsContainer = this.$el.find('.js-discounts');
@@ -70,18 +89,18 @@ class Order {
         });
     }
 
-    getDiscounts(storage) {
-        let discountsData = storage.discountsData;
-        let productsData = storage.data;
+    _getDiscounts() {
+        let discountsData = this.storage.discountsData;
+        let productsData = this.storage.data;
 
         // Search discounts for applying
         let discounts = [];
         for(const discount of discountsData) {
             for(const item of productsData) {
                 if(item.product.code === discount.productCode) {
-                    let discountObj = this.calculateDiscount(item, discount);
+                    let discountObj = this._calculateDiscount(item, discount);
                     if(discountObj) {
-                        discounts.push(this.calculateDiscount(item, discount));
+                        discounts.push(this._calculateDiscount(item, discount));
                     }
                 }
             }
@@ -90,7 +109,7 @@ class Order {
         return discounts;
     }
 
-    calculateDiscount(item, discount) {
+    _calculateDiscount(item, discount) {
         let discountObj = {
             name : discount.name,
             amount : 0
@@ -119,7 +138,7 @@ class Order {
         return discountObj;
     }
 
-    calculateTotalCost(itemsSumAmount, discounts) {
+    _calculateTotalCost(itemsSumAmount, discounts) {
         let totalCostAmount = itemsSumAmount;
         discounts.forEach(discount => {
             totalCostAmount += discount.amount;
