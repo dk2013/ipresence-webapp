@@ -40,7 +40,7 @@ class Product {
         if($button.hasClass('js-increase')) { // (+)
             this._increaseQuantity();
         } else if(this.data.quantity > 0) { // (-) Musn't be negative or NaN
-            this_decreaseQuantity();
+            this._decreaseQuantity();
         }
         this._changeTotal();
 
